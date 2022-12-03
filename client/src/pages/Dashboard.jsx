@@ -1,32 +1,26 @@
-import React from 'react'
+import React from "react";
 
 const Dashboard = () => {
     return (
-        <div className='dashboard px-10 bg-[#f7f6fb]'>
+        <div className="relative w-full lg:p-10 md:p-7 p-5 bg-[#1e1655]">
+            <div className="flex flex-col py-8">
+                <div className="flex flex-row items-center justify-start my-4 md:pb-10 pb-5">
+                    <h1 className="text-[#f5f5f5] lg:text-5xl md:text-4xl sm:text-3xl text-2xl">
+                        Good Morning, Abhi
+                    </h1>
+                </div>
 
-            <div className="dashboard__container bg-[#1e1655] -mx-10 px-10">
-                <h1 className='text-4xl text-white py-10'>Good Morning, Abhi</h1>
-            </div>
-
-            <div className="widgets__container bg-none relative">
-                <div className="cards w-full flex flex-row gap-x-10 absolute -top-10">
-
-                    <div className="w-40 h-60 bg-[#d1eee8]"></div>
-
-                    <div className="w-40 h-60 bg-[#d1eee8]"></div>
-
-                    <div className="w-40 h-60 bg-[#d1eee8]"></div>
-
-                    <div className="w-40 h-60 bg-[#d1eee8]"></div>
+                <div className="absolute top-[60%] flex flex-row justify-start gap-5 my-4">
+                    <div className="w-[200px] h-[230px] bg-black"></div>
+                    <div className="w-[200px] h-[230px] bg-black"></div>
+                    <div className="w-[200px] h-[230px] flex flex-col justify-between items-center">
+                        <div className="w-full h-[47%] bg-black"></div>
+                        <div className="w-full h-[47%] bg-black"></div>
+                    </div>
                 </div>
             </div>
-
-            <div className="graphs__container">
-
-            </div>
-
         </div>
-    )
-}
+    );
+};
 
-export default Dashboard
+export default Dashboard;
