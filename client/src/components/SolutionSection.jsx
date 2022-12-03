@@ -28,38 +28,38 @@ const SolutionCard = ({ imgURL, heading, about }) => {
 
 const SolutionData = [
     {
-        imgURL: "/eWaste.png",
-        heading: "Production",
+        imgURL: "/images/directory.png",
+        heading: "Directory",
         redirectUrl: "login",
-        about: " lets the manufacturers mark their product to classify in type of waste using unique QR codes for having information about the product and its right disposal method.",
+        about: "Directory of local initiatives and programs focused on reducing plastic waste would allow businesses to easily find and join initiatives in their area.",
         route: "Get Started",
     },
     {
-        imgURL: "/plasticWaste.png",
-        heading: "Training Usage",
+        imgURL: "/images/forum.png",
+        heading: "Forum",
         redirectUrl: "training",
-        about: " lets small clinics and hospital to gain access to staff training modules to ensure better HCW management during usage of such items.",
+        about: "Platform for businesses to share their success stories and best practices with other members of the community would encourage collaboration.",
         route: "Start Training",
     },
     {
-        imgURL: "/bioMedicalWaste.png",
-        heading: "Disposal",
+        imgURL: "images/insights.png",
+        heading: "Analytics and Insights",
         redirectUrl: "scanimage",
-        about: " let user classify health care waste into five categories through our ML model and QR Code to provide user an optimal dissposal method of the waste.",
+        about: "Tools and analytics would help businesses track their progress and contributions towards reducing plastic waste, providing insights and insights into areas for improvement.",
         route: "Classify",
     },
     {
-        imgURL: "/bioMedicalWaste.png",
-        heading: "Disposal",
+        imgURL: "images/rewards.png",
+        heading: "Reward Program",
         redirectUrl: "scanimage",
-        about: " let user classify health care waste into five categories through our ML model and QR Code to provide user an optimal dissposal method of the waste.",
+        about: "Rewards program would offer incentives to businesses that actively participate in reducing plastic waste. This could include a variety of rewards and recognition.",
         route: "Classify",
     },
     {
-        imgURL: "/bioMedicalWaste.png",
-        heading: "Disposal",
+        imgURL: "images/wastereduction.png",
+        heading: "Waste Reduction Challenge",
         redirectUrl: "scanimage",
-        about: " let user classify health care waste into five categories through our ML model and QR Code to provide user an optimal dissposal method of the waste.",
+        about: "Plastic waste reduction challenge would allow businesses to compete to see who can reduce their plastic waste the most over a set period of time. This could create friendly competition and motivation for businesses to take action.",
         route: "Classify",
     },
 ];
@@ -79,7 +79,7 @@ const SolutionSection = () => {
                 We follow a procedure we've established for recycling waste and
                 make sure it's followed.
             </p>
-            <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-rows-1 gap-8 w-full my-10">
+            <div className="flex flex-row flex-wrap justify-center items-center gap-24 w-full my-10">
                 {SolutionData.map((individualData, index) => {
                     return (
                         <div
