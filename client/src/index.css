@@ -4,12 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-    body {
-        @apply text-gray-300;
-    }
-}
-
 *,
 html {
     margin: 0;
