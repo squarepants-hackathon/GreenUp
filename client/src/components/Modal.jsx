@@ -10,9 +10,7 @@ const Modal = ({ onClose }) => {
   const [description, setDescription] = useState("");
   const [prediction, setPrediction] = useState("");
   const [type, setType] = useState("select");
-  const [email, setEmail] = useState(
-    JSON.parse(localStorage.getItem("email"))
-  );
+  const [email, setEmail] = useState(JSON.parse(localStorage.getItem("email")));
   const { user } = useAuth0();
 
   useEffect(() => {
@@ -136,7 +134,7 @@ const Modal = ({ onClose }) => {
       return;
     }
     try {
-      let finalType = (type == 'select' ? prediction : type);
+      let finalType = type == "select" ? prediction : type;
       setEmail(user.email);
       const response = await fetch(`${URL}/api/createProduct/`, {
         method: "POST",
@@ -167,9 +165,7 @@ const Modal = ({ onClose }) => {
         onClick={onClose}
       />
       <div className="fixed top-0 bottom-0 left-0 right-0 min-w-[400px] h-fit max-w-[500px] w-full bg-[#f5f5f5] z-[999] m-auto text-black shadow-lg rounded-lg p-4">
-        <h2 className="text-2xl text-center font-semibold">
-          Add Product
-        </h2>
+        <h2 className="text-2xl text-center font-semibold">Add Product</h2>
 
         <form
           className="product-form flex flex-col justify-evenly h-[90%]"
@@ -177,10 +173,7 @@ const Modal = ({ onClose }) => {
         >
           {/* Name */}
           <div className="flex flex-col w-full space-y-2">
-            <label
-              htmlFor="name"
-              className="text-lg font-medium mt-2"
-            >
+            <label htmlFor="name" className="text-lg font-medium mt-2">
               Name
             </label>
             <input
@@ -196,10 +189,7 @@ const Modal = ({ onClose }) => {
 
           {/* Description */}
           <div className="flex flex-col w-full space-y-2">
-            <label
-              htmlFor="description"
-              className="text-lg font-medium mt-2"
-            >
+            <label htmlFor="description" className="text-lg font-medium mt-2">
               Description
             </label>
             <input
@@ -215,10 +205,7 @@ const Modal = ({ onClose }) => {
 
           {/* Drop Down */}
           <div className="flex flex-col w-full space-y-2">
-            <label
-              htmlFor="drop-down"
-              className="text-lg font-medium mt-2"
-            >
+            <label htmlFor="drop-down" className="text-lg font-medium mt-2">
               Disposal Type
             </label>
             <select
@@ -230,23 +217,20 @@ const Modal = ({ onClose }) => {
               className="py-2"
             >
               <option value="select">Select</option>
-              <option value="pet">PET</option>
-              <option value="hdpe">HDPE</option>
-              <option value="pvc">PVC</option>
-              <option value="ldpc">LDPC</option>
-              <option value="pp">PP</option>
-              <option value="ps">PS</option>
+              <option value="medical">Medical</option>
+              <option value="ewaste">Ewaste</option>
+              <option value="plastic">Plastic</option>
+              <option value="paper">Paper</option>
+              <option value="metal">Metal</option>
+              <option value="glass">Glass</option>
+              <option value="cardboard">Cardboard</option>
             </select>
           </div>
 
           {/* Image */}
-
           <div className="image_upload w-full flex justify-center items-center h-40 my-4 border-4">
             {!image_url && (
-              <p
-                className="cursor-pointer"
-                onClick={showUploadWidget}
-              >
+              <p className="cursor-pointer" onClick={showUploadWidget}>
                 Please pick an image
               </p>
             )}
