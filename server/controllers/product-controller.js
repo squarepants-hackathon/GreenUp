@@ -25,6 +25,7 @@ const createProduct = async (req, res) => {
       image_url,
       type,
       description,
+      count: 1,
     });
 
     if (newProd) {
@@ -32,20 +33,20 @@ const createProduct = async (req, res) => {
       user.products.push(newProd._id);
 
       // updating the total waste
-      if (type === "pet") {
-        user.wasteType.pet += 1;
-      } else if (type === "hdpe") {
-        user.wasteType.hdpe += 1;
-      } else if (type === "pvc") {
-        user.wasteType.pvc += 1;
-      } else if (type === "ldpc") {
-        user.wasteType.ldpc += 1;
-      } else if (type === "pp") {
-        user.wasteType.pp += 1;
-      } else if (type === "ps") {
-        user.wasteType.ps += 1;
-      } else {
-        user.wasteType.other += 1;
+      if (type === "medical") {
+        user.wasteType.medical += 1;
+      } else if (type === "ewaste") {
+        user.wasteType.ewaste += 1;
+      } else if (type === "plastic") {
+        user.wasteType.plastic += 1;
+      } else if (type === "paper") {
+        user.wasteType.paper += 1;
+      } else if (type === "metal") {
+        user.wasteType.metal += 1;
+      } else if (type === "glass") {
+        user.wasteType.glass += 1;
+      } else if (type === "cardboard") {
+        user.wasteType.cardboard += 1;
       }
 
       // update counter
@@ -61,6 +62,7 @@ const createProduct = async (req, res) => {
         url: newProd.image_url,
         type: newProd.type,
         manufacture: newProd.manufacture,
+        count: newProd.count,
       });
     }
   } catch (err) {

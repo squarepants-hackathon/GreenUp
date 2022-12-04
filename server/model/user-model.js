@@ -9,31 +9,31 @@ const userSchema = new mongoose.Schema(
       default: 0,
     },
     wasteType: {
-      pet: {
+      medical: {
         type: Number,
         default: 0,
       },
-      hdpe: {
+      ewaste: {
         type: Number,
         default: 0,
       },
-      pvc: {
+      plastic: {
         type: Number,
         default: 0,
       },
-      ldpc: {
+      paper: {
         type: Number,
         default: 0,
       },
-      pp: {
+      metal: {
         type: Number,
         default: 0,
       },
-      ps: {
+      glass: {
         type: Number,
         default: 0,
       },
-      other: {
+      cardboard: {
         type: Number,
         default: 0,
       },
