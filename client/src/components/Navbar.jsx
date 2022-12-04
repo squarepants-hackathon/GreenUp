@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import Auth from "./Auth";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Navbar = () => {
   return (
