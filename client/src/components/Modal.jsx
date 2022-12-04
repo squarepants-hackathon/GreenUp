@@ -99,70 +99,80 @@ const Modal = ({ onClose }) => {
         <h2 className="text-2xl text-center font-semibold">Add Product</h2>
 
         <form
-          className="product-form flex flex-col justify-between h-[90%]"
+          className="product-form flex flex-col justify-evenly h-[90%]"
           onSubmit={submitHandler}
         >
           {/* Name */}
-          <label htmlFor="name" className="text-lg font-medium mt-2">
-            Name
-          </label>
-          <input
-            name="name"
-            type="text"
-            placeholder="Enter Product Name"
-            className="mx-auto border outline-none w-full p-2"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
+          <div className="flex flex-col w-full space-y-2">
+            <label htmlFor="name" className="text-lg font-medium mt-2">
+              Name
+            </label>
+            <input
+              name="name"
+              type="text"
+              placeholder="Enter Product Name"
+              className="mx-auto border outline-none w-full p-2"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
 
           {/* Description */}
-          <label htmlFor="description" className="text-lg font-medium mt-2">
-            Description
-          </label>
-          <input
-            name="description"
-            type="text"
-            placeholder="Enter Product Description"
-            className="mx-auto border outline-none my-2 w-full p-2"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
+          <div className="flex flex-col w-full space-y-2">
+            <label htmlFor="description" className="text-lg font-medium mt-2">
+              Description
+            </label>
+            <input
+              name="description"
+              type="text"
+              placeholder="Enter Product Description"
+              className="mx-auto border outline-none my-2 w-full p-2"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+            />
+          </div>
 
           {/* Drop Down */}
-          <label htmlFor="drop-down" className="text-lg font-medium mt-2">
-            Disposal Type
-          </label>
-          <select
-            name="drop-down"
-            id="drop-down"
-            value={type}
-            onChange={(e) => setType(e.target.value)}
-            required
-          >
-            <option value="General Waste">General Waste</option>
-            <option value="Infected Plastic">Infected Plastic</option>
-            <option value="Infected Waste">Infected Waste</option>
-            <option value="Glassware">Glassware</option>
-            <option value="Sharps">Sharps</option>
-          </select>
-
+          <div className="flex flex-col w-full space-y-2">
+            <label htmlFor="drop-down" className="text-lg font-medium mt-2">
+              Disposal Type
+            </label>
+            <select
+              name="drop-down"
+              id="drop-down"
+              value={type}
+              onChange={(e) => setType(e.target.value)}
+              // required
+              className="py-2"
+            >
+              <option value="pet">PET</option>
+              <option value="hdpe">HDPE</option>
+              <option value="pvc">PVC</option>
+              <option value="ldpc">LDPC</option>
+              <option value="pp">PP</option>
+              <option value="ps">PS</option>
+            </select>
+          </div>
+          
           {/* Image */}
-          <button
-            className="button inline-block px-6 py-2.5 bg-blue-400 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-500 hover:shadow-lg focus:bg-blue-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-600 active:shadow-lg transition duration-150 ease-in-out"
-            type="button"
-            onClick={showUploadWidget}
-          >
-            PICK IMAGE
-          </button>
-          <button
-            type="submit"
-            className="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out disabled:bg-gray-700"
-            disabled={!image_url}
-          >
-            Submit
-          </button>
+          <div className="flex flex-row w-full justify-between items-center space-x-3">
+            <button
+              className="button w-full px-6 py-2.5 bg-blue-400 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-500 hover:shadow-lg focus:bg-blue-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-600 active:shadow-lg transition duration-150 ease-in-out"
+              type="button"
+              onClick={showUploadWidget}
+            >
+              PICK IMAGE
+            </button>
+            <button
+              type="submit"
+              className=" w-full px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out disabled:bg-gray-700"
+              disabled={!image_url}
+            >
+              Submit
+            </button>
+          </div>
         </form>
       </div>
     </>
