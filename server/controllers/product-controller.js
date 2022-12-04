@@ -48,8 +48,10 @@ const createProduct = async (req, res) => {
         user.wasteType.other += 1;
       }
 
+      // update counter
       // updating the recycled waste
       // updating the total waste
+
       await user.save();
       console.log("user3", user);
 
@@ -98,4 +100,74 @@ const companyProduct = async (req, res) => {
   }
 };
 
-module.exports = { createProduct, getProduct, companyProduct };
+const totalWaste = async (req, res) => {
+  const { email } = req.body;
+  console.log("email", email);
+  const arr = [
+    {
+      month: "Jan",
+      waste: 0,
+    },
+    {
+      month: "Feb",
+      waste: 0,
+    },
+    {
+      month: "Mar",
+      waste: 0,
+    },
+    {
+      month: "Apr",
+      waste: 0,
+    },
+    {
+      month: "May",
+      waste: 0,
+    },
+    {
+      month: "June",
+      waste: 0,
+    },
+    {
+      month: "July",
+      waste: 0,
+    },
+    {
+      month: "Aug",
+      waste: 0,
+    },
+    {
+      month: "Sep",
+      waste: 0,
+    },
+    {
+      month: "Oct",
+      waste: 0,
+    },
+    {
+      month: "Nov",
+      waste: 0,
+    },
+    {
+      month: "Dec",
+      waste: 0,
+    },
+  ];
+  try {
+    const user = await User.findOne({ email }).populate("products");
+
+    user.products.map((product) => {
+      let month = new Date(product.updatedAt);
+      month = month.getMonth();
+
+      arr[month].waste += 1;
+    });
+
+    return res.status(200).json({ TotalWaste: arr });
+  } catch (err) {
+    console.log(err);
+    return res.status(404).json(err);
+  }
+};
+
+module.exports = { createProduct, getProduct, companyProduct, totalWaste };

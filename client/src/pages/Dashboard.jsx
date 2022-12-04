@@ -1,13 +1,16 @@
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-
 import { BsShare, BsDownload } from "react-icons/bs";
 import LineChart from "../utils/LineChart";
 
 import { RecyclableWaste, TotalWaste } from "../Data";
 import { useState } from "react";
+import { useEffect } from "react";
+import { getTotalWaste } from "../api";
 
 const Dashboard = () => {
+  const [email, setEmail] = useState(JSON.parse(localStorage.getItem("email")));
+
   const [data, setData] = useState({
     labels: TotalWaste.map((data) => data.month),
     datasets: [
@@ -37,6 +40,31 @@ const Dashboard = () => {
       },
     ],
   });
+
+  useEffect(() => {
+    if (email) {
+      const getTotalWasteFunc = async () => {
+        const data = await getTotalWaste({ email });
+        console.log("data", data);
+        setData({
+          labels: data.data.TotalWaste.map((waste) => waste.month),
+          datasets: [
+            {
+              label: "Total Waste",
+              fill: true,
+              tension: 0.2,
+              data: data.data.TotalWaste.map((data) => data.waste),
+              backgroundColor: ["rgba(75,192,192,1)"],
+              borderColor: "black",
+              borderWidth: 0.5,
+            },
+          ],
+        });
+      };
+
+      getTotalWasteFunc();
+    }
+  }, [email]);
 
   return (
     <div className="relative w-full lg:p-10 md:p-7 p-5 bg-gradient-to-b from-[#1e1655] to-[#4b4196]">

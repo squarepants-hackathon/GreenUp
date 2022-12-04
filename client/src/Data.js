@@ -63,63 +63,51 @@ export const RecyclableWaste = [
 
 export const TotalWaste = [
   {
-    id: 1,
     month: "Jan",
-    waste: "100",
+    waste: 0,
   },
   {
-    id: 2,
     month: "Feb",
-    waste: "300",
+    waste: 0,
   },
   {
-    id: 3,
     month: "Mar",
-    waste: "500",
+    waste: 0,
   },
   {
-    id: 4,
     month: "Apr",
-    waste: "200",
+    waste: 0,
   },
   {
-    id: 5,
     month: "May",
-    waste: "150",
+    waste: 0,
   },
   {
-    id: 6,
     month: "June",
-    waste: "180",
+    waste: 0,
   },
   {
-    id: 7,
     month: "July",
-    waste: "40",
+    waste: 0,
   },
   {
-    id: 8,
     month: "Aug",
-    waste: "350",
+    waste: 0,
   },
   {
-    id: 9,
     month: "Sep",
-    waste: "400",
+    waste: 0,
   },
   {
-    id: 10,
     month: "Oct",
-    waste: "600",
+    waste: 0,
   },
   {
-    id: 11,
     month: "Nov",
-    waste: "280",
+    waste: 0,
   },
   {
-    id: 12,
     month: "Dec",
-    waste: "440",
+    waste: 0,
   },
 ];
