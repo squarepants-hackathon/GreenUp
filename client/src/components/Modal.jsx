@@ -16,18 +16,20 @@ const Modal = ({ onClose }) => {
     );
     const { user } = useAuth0();
 
+    const ModelURL =
+        "https://teachablemachine.withgoogle.com/models/ongolnfw4/";
+
+    const modelURL = ModelURL + "model.json";
+    const metadataURL = ModelURL + "metadata.json";
+
     useEffect(() => {
         if (user) {
             setEmail(user?.email);
         }
     }, [user]);
 
-    useEffect(() => {
-        capture();
-    }, [image_url]);
-
-    function showUploadWidget() {
-        window.cloudinary.openUploadWidget(
+    async function showUploadWidget() {
+        await window.cloudinary.openUploadWidget(
             {
                 cloudName: `${import.meta.env.VITE_CLOUD_NAME}`,
                 uploadPreset: `${import.meta.env.VITE_PRESET}`,
@@ -64,13 +66,14 @@ const Modal = ({ onClose }) => {
             (err, result) => {
                 if (!err && result?.event === "success") {
                     setImage(result.info.secure_url);
+                    capture();
                 }
             }
         );
     }
 
-    async function getBase64ImageFromUrl(imageUrl) {
-        let res = await fetch(imageUrl);
+    async function getBase64ImageFromUrl() {
+        let res = await fetch(image_url);
         let blob = await res.blob();
 
         return new Promise((resolve, reject) => {
@@ -91,34 +94,21 @@ const Modal = ({ onClose }) => {
     }
 
     async function capture() {
-        let URL = "https://teachablemachine.withgoogle.com/models/";
-        let category = "";
-        if (category === "e-waste") {
-            URL += "/mCsoP6AyQ";
-        } else if (category === "plastic-waste") {
-            URL += "mCsoP6AyQ/";
-        } else {
-            URL += "CS19oS292/";
-        }
-
-        const modelURL = URL + "model.json";
-        const metadataURL = URL + "metadata.json";
-
         const model = await tmImage.load(modelURL, metadataURL);
 
-        const imageData = await getBase64ImageFromUrl(image_url);
+        const imageData = await getBase64ImageFromUrl();
 
         let newImage = new Image();
         newImage.src = imageData;
 
-        const prediction = await model.predict(newImage);
+        let pred = await model.predict(newImage);
 
-        console.log(prediction);
+        console.table(pred);
 
         let highestProb = 0;
         let typeProb = 0;
 
-        prediction.map((val) => {
+        pred.map((val) => {
             let currentProb = val.probability * 100;
 
             if (currentProb > highestProb) {
@@ -127,7 +117,7 @@ const Modal = ({ onClose }) => {
             }
         });
 
-        setPrediction(typeProb);
+        setType(typeProb?.toString());
     }
 
     const submitHandler = async (e) => {
