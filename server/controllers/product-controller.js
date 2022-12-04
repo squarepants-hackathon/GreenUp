@@ -1,5 +1,6 @@
 const prod = require("../model/product-model");
 const User = require("../model/user-model");
+const recycle = require("../model/recycle-model");
 
 const createProduct = async (req, res) => {
   try {
@@ -57,10 +58,6 @@ const createProduct = async (req, res) => {
       } else if (type === "cardboard") {
         user.wasteType.cardboard += 1;
       }
-
-      // update counter
-      // updating the recycled waste
-      // updating the total waste
 
       await user.save();
       console.log("user3", user);
@@ -182,7 +179,7 @@ const totalWaste = async (req, res) => {
 };
 
 const updateCount = async (req, res) => {
-  const { id, count } = req.body;
+  const { id, count, email } = req.body;
   console.log("count", req.body);
   try {
     if (count === 0) {
@@ -193,6 +190,13 @@ const updateCount = async (req, res) => {
     }
 
     let product = await prod.findById(id);
+
+    if (product.count < count) {
+      let user = await User.findOne({ email });
+      user.totalWaste += count - product.count;
+      user.save();
+    }
+
     product.count = count;
 
     product.save();
@@ -206,10 +210,45 @@ const updateCount = async (req, res) => {
   }
 };
 
+const recycledWasteFunc = async (req, res) => {
+  const { email, id, count } = req.body;
+  console.log("recycle", req.body);
+  try {
+    if (count === 0) {
+      return res
+        .status(200)
+        .json({ message: "count cannot be zero", updated: false });
+    }
+
+    const newRecycle = await recycle.create({
+      count,
+    });
+
+    const user = await User.findOne({ email });
+    console.log("user", user);
+    user.recycledWaste.push(newRecycle._id);
+    user.save();
+
+    let product = await prod.findById(id);
+    product.count = count;
+    product.save();
+
+    if (count <= 0) {
+      await prod.findByIdAndDelete(id);
+    }
+
+    return res.status(200).json({ message: "", updated: true });
+  } catch (err) {
+    console.log(err);
+    return res.status(404).json(err);
+  }
+};
+
 module.exports = {
   createProduct,
   getProduct,
   companyProduct,
   totalWaste,
   updateCount,
+  recycledWasteFunc,
 };

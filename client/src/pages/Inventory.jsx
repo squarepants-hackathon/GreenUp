@@ -3,7 +3,7 @@ import { json, NavLink, useNavigate } from "react-router-dom";
 import { GrAdd } from "react-icons/gr";
 import Modal from "../components/Modal";
 import QRmodal from "../components/QRmodal.jsx";
-import { companyProduct, updateCount } from "../api";
+import { companyProduct, recycledWaste, updateCount } from "../api";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { FcPlus } from "react-icons/fc";
@@ -12,6 +12,8 @@ import { HiMinusCircle } from "react-icons/hi";
 const Inventory = () => {
   const { isAuthenticated, logout, user } = useAuth0();
 
+  const [runCount, setRunCount] = useState(false);
+  const [currRecycle, setCurrRecycle] = useState(0);
   const [currId, setCurrId] = useState("");
   const [currCount, setCurrCount] = useState();
   const [showModal, setShowModal] = useState(false);
@@ -54,21 +56,42 @@ const Inventory = () => {
   console.table(products);
 
   useEffect(() => {
-    const updateCountFunc = async () => {
-      if (currId) {
-        const data = await updateCount({
-          id: currId,
-          count: currCount,
-        });
-        console.log(data);
+    if (runCount === true) {
+      const updateCountFunc = async () => {
+        if (currId) {
+          const data = await updateCount({
+            id: currId,
+            count: currCount,
+            email,
+          });
+          console.log(data);
 
-        if (data.data.updated == true) {
-          window.location.reload(true);
+          if (data.data.updated == true) {
+            window.location.reload(true);
+          }
         }
-      }
-    };
-    updateCountFunc();
-  }, [currId]);
+      };
+      updateCountFunc();
+    }
+  }, [runCount]);
+
+  const handleRecycle = async (e) => {
+    e.preventDefault;
+    if (currCount < currRecycle) {
+      alert("Recycle count cannot be greater than product count");
+      return;
+    }
+
+    const { data } = await recycledWaste({
+      email,
+      id: currId,
+      count: currRecycle,
+    });
+
+    if (data.updated) {
+      window.location.reload(true);
+    }
+  };
 
   return (
     <>
@@ -138,6 +161,28 @@ const Inventory = () => {
                     </button>
                   </div>
                   <div
+                    className="w-full flex flex-row my-2 px-[1rem] space-x-3"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setCurrCount(product?.count);
+                      setCurrId(product._id);
+                    }}
+                  >
+                    <input
+                      className="flex-[0.5] w-full border-[1px] border-black rounded-md text-center"
+                      required
+                      type="number"
+                      value={currRecycle}
+                      onChange={(e) => setCurrRecycle(e.target.value)}
+                    />
+                    <button
+                      onClick={(e) => handleRecycle(e)}
+                      className="flex-[0.5] w-full bg-green-600 hover:bg-green-700 duration-200 rounded-md text-white"
+                    >
+                      Recycle
+                    </button>
+                  </div>
+                  <div
                     onClick={() => setCurrId(product._id)}
                     className="flex flex-row items-center justify-evenly mt-2 gap-4 text-lg font-medium"
                   >
@@ -145,7 +190,10 @@ const Inventory = () => {
                       src="/assets/plus.png"
                       alt="plus"
                       className="w-10 h-10 cursor-pointer"
-                      onClick={() => setCurrCount((prev) => product?.count + 1)}
+                      onClick={() => {
+                        setRunCount(true);
+                        setCurrCount((prev) => product?.count + 1);
+                      }}
                     />
                     <span className="text-center text-xl font-medium">
                       {product?.count}
@@ -154,7 +202,10 @@ const Inventory = () => {
                       src="/assets/minus.png"
                       alt="minus"
                       className="w-10 h-10 cursor-pointer"
-                      onClick={() => setCurrCount((prev) => product?.count - 1)}
+                      onClick={() => {
+                        setRunCount(true);
+                        setCurrCount((prev) => product?.count - 1);
+                      }}
                     />
                   </div>
                 </div>

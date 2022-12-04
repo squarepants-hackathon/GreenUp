@@ -14,11 +14,11 @@ const register = async (req, res) => {
       email,
     });
     await newUser.save();
-
+    console.log("new User", newUser);
     return res.status(200).json({ email });
   } catch (err) {
     console.log("err", err);
-    return res.status(500).json({ message });
+    return res.status(500).json({ err });
   }
 };
 

@@ -17,5 +17,6 @@ export const companyProduct = (email) => api.get(`/api/companyProd/${email}`);
 export const getTotalWaste = (email) => api.post("/api/totalWaste", email);
 export const getRecyclableWaste = () => api.post();
 export const updateCount = (data) => api.post("/api/updateCount", data);
+export const recycledWaste = (data) => api.post("/api/recycledWaste", data);
 
 export default api;
