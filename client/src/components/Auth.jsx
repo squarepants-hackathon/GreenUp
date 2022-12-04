@@ -4,8 +4,7 @@ import { useEffect } from "react";
 import { register } from "../api";
 
 const Auth = () => {
-  const { loginWithRedirect, logout, user, isAuthenticated, isLoading } =
-    useAuth0();
+  const { loginWithRedirect, logout, user, isAuthenticated, isLoading } = useAuth0();
 
   useEffect(() => {
     if (user) {
