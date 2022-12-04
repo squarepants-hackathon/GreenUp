@@ -3,6 +3,8 @@ import Auth from "./Auth";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Navbar = () => {
+  const { isAuthenticated } = useAuth0();
+
   return (
     <div className="bg-[#1e1655] flex row p-4 items-center justify-center">
       <nav className="max-w-7xl mx-auto flex flex-row justify-between items-center w-full">
@@ -14,9 +16,11 @@ const Navbar = () => {
           <NavLink to="/inventory" className="cursor-pointer">
             Inventory
           </NavLink>
-          <NavLink to="/dashboard" className="cursor-pointer">
-            Dashboard
-          </NavLink>
+          {isAuthenticated && (
+            <NavLink to="/dashboard" className="cursor-pointer">
+              Dashboard
+            </NavLink>
+          )}
           <NavLink to="/contact-us" className="cursor-pointer">
             Contact
           </NavLink>

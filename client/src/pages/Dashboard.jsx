@@ -31,7 +31,7 @@ const Dashboard = () => {
         fill: true,
         tension: 0.2,
         data: RecyclableWaste.map((data) => data.waste),
-        backgroundColor: ["rgba(75,192,192,1)"],
+        backgroundColor: ["#eaa133"],
         borderColor: "black",
         borderWidth: 0.5,
       },
