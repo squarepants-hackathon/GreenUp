@@ -4,25 +4,34 @@ import "react-circular-progressbar/dist/styles.css";
 import { BsShare, BsDownload } from "react-icons/bs";
 import LineChart from "../utils/LineChart";
 
-import { wasteType } from "../Data";
+import { RecyclableWaste, TotalWaste } from "../Data";
 import { useState } from "react";
 
 const Dashboard = () => {
   const [data, setData] = useState({
-    labels: wasteType.map((data) => data.type),
+    labels: TotalWaste.map((data) => data.month),
     datasets: [
       {
-        label: "Reducycle Waste",
+        label: "Total Waste",
         fill: true,
         tension: 0.2,
-        data: wasteType.map((data) => data.waste),
-        backgroundColor: [
-          "rgba(75,192,192,1)",
-          "#ecf0f1",
-          "#50AF95",
-          "#f3ba2f",
-          "#2a71d0",
-        ],
+        data: TotalWaste.map((data) => data.waste),
+        backgroundColor: ["rgba(75,192,192,1)"],
+        borderColor: "black",
+        borderWidth: 0.5,
+      },
+    ],
+  });
+
+  const [data2, setData2] = useState({
+    labels: RecyclableWaste.map((data) => data.month),
+    datasets: [
+      {
+        label: "Recyclable Waste",
+        fill: true,
+        tension: 0.2,
+        data: RecyclableWaste.map((data) => data.waste),
+        backgroundColor: ["rgba(75,192,192,1)"],
         borderColor: "black",
         borderWidth: 0.5,
       },
@@ -76,7 +85,7 @@ const Dashboard = () => {
           </div>
 
           {/* div 3 */}
-          <div className="w-[200px] h-[230px] flex flex-col justify-between items-center">
+          <div className="w-[200px] h-[230px] flex flex-col justify-between items-center text-white">
             <div className="w-full h-[47%] bg-black rounded-md flex flex-col justify-between p-4 bg-gradient-to-b from-[#362f68] to-gray-400">
               <p className="text-[10px] uppercase">Live Visitors</p>
               <h1 className="text-2xl text-semibold">10,241</h1>
@@ -93,7 +102,7 @@ const Dashboard = () => {
             <LineChart chartData={data} />
           </div>
           <div className="flex-[0.5] flex flex-row">
-            <LineChart chartData={data} />
+            <LineChart chartData={data2} />
           </div>
         </div>
       </div>

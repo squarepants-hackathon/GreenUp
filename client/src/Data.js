@@ -1,70 +1,125 @@
-export const UserData = [
+export const RecyclableWaste = [
   {
     id: 1,
-    year: 2016,
-    userGain: 80000,
-    userLost: 823,
+    month: "Jan",
+    waste: "600",
   },
   {
     id: 2,
-    year: 2017,
-    userGain: 45677,
-    userLost: 345,
+    month: "Feb",
+    waste: "1000",
   },
   {
     id: 3,
-    year: 2018,
-    userGain: 78888,
-    userLost: 555,
+    month: "Mar",
+    waste: "800",
   },
   {
     id: 4,
-    year: 2019,
-    userGain: 90000,
-    userLost: 4555,
+    month: "Apr",
+    waste: "280",
   },
   {
     id: 5,
-    year: 2020,
-    userGain: 4300,
-    userLost: 234,
+    month: "May",
+    waste: "700",
+  },
+  {
+    id: 6,
+    month: "June",
+    waste: "800",
+  },
+  {
+    id: 7,
+    month: "July",
+    waste: "430",
+  },
+  {
+    id: 8,
+    month: "Aug",
+    waste: "650",
+  },
+  {
+    id: 9,
+    month: "Sep",
+    waste: "340",
+  },
+  {
+    id: 10,
+    month: "Oct",
+    waste: "630",
+  },
+  {
+    id: 11,
+    month: "Nov",
+    waste: "420",
+  },
+  {
+    id: 12,
+    month: "Dec",
+    waste: "490",
   },
 ];
 
-export const wasteType = [
+export const TotalWaste = [
   {
     id: 1,
-    type: "PET",
+    month: "Jan",
     waste: "100",
   },
   {
     id: 2,
-    type: "HDPE",
-    waste: "140",
-  },
-  {
-    id: 3,
-    type: "PVC",
-    waste: "30",
-  },
-  {
-    id: 4,
-    type: "LDPE",
-    waste: "350",
-  },
-  {
-    id: 4,
-    type: "PP",
-    waste: "400",
-  },
-  {
-    id: 5,
-    type: "PS",
+    month: "Feb",
     waste: "300",
   },
   {
-    id: 6,
-    type: "OTHER",
+    id: 3,
+    month: "Mar",
+    waste: "500",
+  },
+  {
+    id: 4,
+    month: "Apr",
     waste: "200",
+  },
+  {
+    id: 5,
+    month: "May",
+    waste: "150",
+  },
+  {
+    id: 6,
+    month: "June",
+    waste: "180",
+  },
+  {
+    id: 7,
+    month: "July",
+    waste: "40",
+  },
+  {
+    id: 8,
+    month: "Aug",
+    waste: "350",
+  },
+  {
+    id: 9,
+    month: "Sep",
+    waste: "400",
+  },
+  {
+    id: 10,
+    month: "Oct",
+    waste: "600",
+  },
+  {
+    id: 11,
+    month: "Nov",
+    waste: "280",
+  },
+  {
+    id: 12,
+    month: "Dec",
+    waste: "440",
   },
 ];
