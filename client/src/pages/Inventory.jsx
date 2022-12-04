@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import WebCam from "../components/WebCam.jsx";
 
 const Inventory = () => {
-    return (
-        <div>Inventory</div>
-    )
-}
+  return (
+    <>
+      <WebCam />
+    </>
+  );
+};
 
-export default Inventory
+export default Inventory;
