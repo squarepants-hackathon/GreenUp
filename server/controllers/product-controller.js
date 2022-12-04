@@ -4,10 +4,18 @@ const User = require("../model/user-model");
 const createProduct = async (req, res) => {
   try {
     console.log(req.body);
-    const { name, description, type, image_url, manufacture, weight } = req.body;
+    const { name, description, type, image_url, manufacture, weight } =
+      req.body;
     console.log("new Product", req.body);
 
-    if (!name || !description || !type || !image_url || !manufacture || !weight) {
+    if (
+      !name ||
+      !description ||
+      !type ||
+      !image_url ||
+      !manufacture ||
+      !weight
+    ) {
       return res.status(401).json({ message: "Please enter all fields" });
     }
 
@@ -173,4 +181,35 @@ const totalWaste = async (req, res) => {
   }
 };
 
-module.exports = { createProduct, getProduct, companyProduct, totalWaste };
+const updateCount = async (req, res) => {
+  const { id, count } = req.body;
+  console.log("count", req.body);
+  try {
+    if (count === 0) {
+      await prod.findByIdAndDelete(id);
+      return res.status(200).json({
+        updated: true,
+      });
+    }
+
+    let product = await prod.findById(id);
+    product.count = count;
+
+    product.save();
+
+    return res.status(200).json({
+      updated: true,
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(404).json(err);
+  }
+};
+
+module.exports = {
+  createProduct,
+  getProduct,
+  companyProduct,
+  totalWaste,
+  updateCount,
+};
