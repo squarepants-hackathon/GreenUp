@@ -3,6 +3,7 @@ import HeroImageSection from "../components/HeroImageSection";
 import HeroSection from "../components/HeroSection";
 import SolutionSection from "../components/SolutionSection";
 import Footer from "../components/Footer";
+import ProcessSection from "../components/ProcessSection.jsx";
 
 const HomePage = () => {
     return (
@@ -11,6 +12,7 @@ const HomePage = () => {
             <HeroImageSection />
             <HeroAssistance />
             <SolutionSection />
+            <ProcessSection />
             <Footer />
         </>
     );
