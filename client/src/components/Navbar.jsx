@@ -13,9 +13,11 @@ const Navbar = () => {
           <NavLink to="/" className="cursor-pointer">
             Home
           </NavLink>
-          <NavLink to="/inventory" className="cursor-pointer">
-            Inventory
-          </NavLink>
+          {isAuthenticated && (
+            <NavLink to="/inventory" className="cursor-pointer">
+              Inventory
+            </NavLink>
+          )}
           {isAuthenticated && (
             <NavLink to="/dashboard" className="cursor-pointer">
               Dashboard
