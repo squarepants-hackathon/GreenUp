@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema(
         default: 0,
       },
     },
-    RecycledWaste: {
+    recycledWaste: {
       type: Number,
       default: 0,
     },
