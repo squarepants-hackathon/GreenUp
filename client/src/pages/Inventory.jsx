@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { json, NavLink, useNavigate } from "react-router-dom";
 import { GrAdd } from "react-icons/gr";
 import Modal from "../components/Modal";
-// import QRmodal from "../components/QRmodal";
+import QRmodal from "../components/QRmodal.jsx";
 import { companyProduct, updateCount } from "../api";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -127,8 +127,7 @@ const Inventory = () => {
                     <button
                       onClick={() => {
                         setValue(
-                          `
-                          https://parivesh.vercel.app/product/${product._id}`
+                          `http://localhost:5173/product/${product._id}`
                         );
                         setQRModal(true);
                       }}
@@ -137,8 +136,6 @@ const Inventory = () => {
                     >
                       View QR
                     </button>
-
-                    {/* <QRCodeSVG  /> */}
                   </div>
                   <div
                     onClick={() => setCurrId(product._id)}
