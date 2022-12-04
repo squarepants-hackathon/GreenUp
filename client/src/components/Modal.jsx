@@ -150,6 +150,7 @@ const Modal = ({ onClose }) => {
                     image_url,
                     type: finalType,
                     manufacture: email,
+                    weight,
                 }),
             });
             const data = await response.json();
@@ -228,7 +229,7 @@ const Modal = ({ onClose }) => {
                             placeholder="Enter Product Weight (grams)"
                             className="mx-auto border outline-none my-2 w-full p-2"
                             value={weight}
-                            onChange={(e) => setDescription(e.target.value)}
+                            onChange={(e) => setWeight(e.target.value)}
                             required
                         />
                     </div>

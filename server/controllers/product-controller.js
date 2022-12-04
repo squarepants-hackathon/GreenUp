@@ -4,10 +4,10 @@ const User = require("../model/user-model");
 const createProduct = async (req, res) => {
   try {
     console.log(req.body);
-    const { name, description, type, image_url, manufacture } = req.body;
+    const { name, description, type, image_url, manufacture, weight } = req.body;
     console.log("new Product", req.body);
 
-    if (!name || !description || !type || !image_url || !manufacture) {
+    if (!name || !description || !type || !image_url || !manufacture || !weight) {
       return res.status(401).json({ message: "Please enter all fields" });
     }
 
@@ -26,6 +26,7 @@ const createProduct = async (req, res) => {
       type,
       description,
       count: 1,
+      weight,
     });
 
     if (newProd) {

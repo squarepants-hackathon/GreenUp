@@ -8,6 +8,9 @@ const prodSchema = new mongoose.Schema(
     manufacture: {
       type: String,
     },
+    weight: {
+      type: Number,
+    },
     image_url: {
       type: String,
     },
