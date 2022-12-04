@@ -8,7 +8,26 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { getTotalWaste } from "../api";
 
+const dateStyle = {
+  "background": "linear-gradient(to bottom, #ffffff 0%, #0000ff 100%)",
+  "-webkit-background-clip": "text",
+  "-webkit-text-fill-color": "transparent"
+}
+
 const Dashboard = () => {
+  const [date, setDate] = useState(new Date());
+
+  function refreshClock() {
+    setDate(new Date());
+  }
+
+  useEffect(() => {
+    const timerId = setInterval(refreshClock, 1000);
+    return function cleanup() {
+      clearInterval(timerId);
+    };
+  }, []);
+
   const [email, setEmail] = useState(JSON.parse(localStorage.getItem("email")));
 
   const [data, setData] = useState({
@@ -83,46 +102,52 @@ const Dashboard = () => {
           </h1>
         </div>
 
-        <div className="absolute top-[60%] flex flex-row justify-start gap-5 my-4">
-          {/* div 1 */}
-          <div className="w-[200px] h-[230px] rounded-md relative bg-white text-black">
-            <div className="flex justify-end flex-col h-full">
-              <div
-                style={{
-                  height: "55%",
-                }}
-                className={`hidden_area bg-green-300 rounded-md w-full`}
-              ></div>
+        <div className="cards__conatiner absolute top-[60%] w-11/12 flex justify-between">
+          <div className="flex flex-row justify-start gap-5 my-4">
+            {/* div 1 */}
+            <div className="w-[200px] h-[230px] rounded-md relative bg-white text-black">
+              <div className="flex justify-end flex-col h-full">
+                <div
+                  style={{
+                    height: "55%",
+                  }}
+                  className={`hidden_area bg-green-300 rounded-md w-full`}
+                ></div>
+              </div>
+              <p className="absolute top-0 left-0 w-full h-full flex justify-center items-center text-xl">
+                45%
+              </p>
             </div>
-            <p className="absolute top-0 left-0 w-full h-full flex justify-center items-center text-xl">
-              45%
-            </p>
-          </div>
 
-          {/* div 2 */}
-          <div className="w-[200px] h-[230px] rounded-md bg-black flex items-center justify-center p-8 bg-gradient-to-t from-cyan-500 to-blue-300">
-            <CircularProgressbar
-              styles={buildStyles({
-                pathColor: `#58a3e8`,
-                textColor: "#ffffff",
-                trailColor: "#ffffff",
-              })}
-              value={"20"}
-              text={`${"20"}%`}
-            />
-          </div>
+            {/* div 2 */}
+            <div className="w-[200px] h-[230px] rounded-md bg-black flex items-center justify-center p-8 bg-gradient-to-t from-cyan-500 to-blue-300">
+              <CircularProgressbar
+                styles={buildStyles({
+                  pathColor: `#58a3e8`,
+                  textColor: "#ffffff",
+                  trailColor: "#ffffff",
+                })}
+                value={"20"}
+                text={`${"20"}%`}
+              />
+            </div>
 
-          {/* div 3 */}
-          <div className="w-[200px] h-[230px] flex flex-col justify-between items-center text-white">
-            <div className="w-full h-[47%] bg-black rounded-md flex flex-col justify-between p-4 bg-gradient-to-b from-[#362f68] to-gray-400">
-              <p className="text-[10px] uppercase">Live Visitors</p>
-              <h1 className="text-2xl text-semibold">10,241</h1>
+            {/* div 3 */}
+            <div className="w-[200px] h-[230px] flex flex-col justify-between items-center text-white">
+              <div className="w-full h-[47%] bg-black rounded-md flex flex-col justify-between p-4 bg-gradient-to-b from-[#362f68] to-gray-400">
+                <p className="text-[10px] uppercase">Live Visitors</p>
+                <h1 className="text-2xl text-semibold">10,241</h1>
+              </div>
+              <div className="w-full h-[47%] bg-black rounded-md flex flex-col justify-between p-4 bg-gradient-to-b from-[#362f68] to-gray-400">
+                <p className="text-[10px] uppercase">Bounce</p>
+                <h1 className="text-2xl text-semibold">3:42</h1>
+              </div>
             </div>
-            <div className="w-full h-[47%] bg-black rounded-md flex flex-col justify-between p-4 bg-gradient-to-b from-[#362f68] to-gray-400">
-              <p className="text-[10px] uppercase">Bounce</p>
-              <h1 className="text-2xl text-semibold">3:42</h1>
-            </div>
+
           </div>
+          <p className="text-white text-7xl -mt-16 font-semibold uppercase"
+            style={dateStyle}
+          >{date.toLocaleTimeString()}</p>
         </div>
 
         <div className="absolute top-[28rem] w-[93vw] h-[20rem] px-5 bg-zinc-200 bg-opacity-40 rounded-xl flex flex-row justify-between items-center">
