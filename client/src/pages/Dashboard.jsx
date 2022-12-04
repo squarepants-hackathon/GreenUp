@@ -6,13 +6,13 @@ import LineChart from "../utils/LineChart";
 import { RecyclableWaste, TotalWaste } from "../Data";
 import { useState } from "react";
 import { useEffect } from "react";
-import { getTotalWaste } from "../api";
+import { getRecycledWaste, getTotalWaste } from "../api";
 
 const dateStyle = {
-  "background": "linear-gradient(to bottom, #ffffff 0%, #0000ff 100%)",
+  background: "linear-gradient(to bottom, #ffffff 0%, #0000ff 100%)",
   "-webkit-background-clip": "text",
-  "-webkit-text-fill-color": "transparent"
-}
+  "-webkit-text-fill-color": "transparent",
+};
 
 const Dashboard = () => {
   const [date, setDate] = useState(new Date());
@@ -81,7 +81,27 @@ const Dashboard = () => {
         });
       };
 
+      const getRecycledWasteFunc = async () => {
+        const data = await getRecycledWaste({ email });
+        console.log("data2", data);
+        setData2({
+          labels: data.data.RecycledWaste.map((waste) => waste.month),
+          datasets: [
+            {
+              label: "Total Waste",
+              fill: true,
+              tension: 0.2,
+              data: data.data.RecycledWaste.map((data) => data.waste),
+              backgroundColor: ["#eaa133"],
+              borderColor: "black",
+              borderWidth: 0.5,
+            },
+          ],
+        });
+      };
+
       getTotalWasteFunc();
+      getRecycledWasteFunc();
     }
   }, [email]);
 
@@ -143,11 +163,13 @@ const Dashboard = () => {
                 <h1 className="text-2xl text-semibold">3:42</h1>
               </div>
             </div>
-
           </div>
-          <p className="text-white text-7xl -mt-16 font-semibold uppercase"
+          <p
+            className="text-white text-7xl -mt-16 font-semibold uppercase"
             style={dateStyle}
-          >{date.toLocaleTimeString()}</p>
+          >
+            {date.toLocaleTimeString()}
+          </p>
         </div>
 
         <div className="absolute top-[28rem] w-[93vw] h-[20rem] px-5 bg-zinc-200 bg-opacity-40 rounded-xl flex flex-row justify-between items-center">

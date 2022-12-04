@@ -178,6 +178,77 @@ const totalWaste = async (req, res) => {
   }
 };
 
+const recycledWaste = async (req, res) => {
+  const { email } = req.body;
+  console.log("email", email);
+  const arr = [
+    {
+      month: "Jan",
+      waste: 0,
+    },
+    {
+      month: "Feb",
+      waste: 0,
+    },
+    {
+      month: "Mar",
+      waste: 0,
+    },
+    {
+      month: "Apr",
+      waste: 0,
+    },
+    {
+      month: "May",
+      waste: 0,
+    },
+    {
+      month: "June",
+      waste: 0,
+    },
+    {
+      month: "July",
+      waste: 0,
+    },
+    {
+      month: "Aug",
+      waste: 0,
+    },
+    {
+      month: "Sep",
+      waste: 0,
+    },
+    {
+      month: "Oct",
+      waste: 0,
+    },
+    {
+      month: "Nov",
+      waste: 0,
+    },
+    {
+      month: "Dec",
+      waste: 0,
+    },
+  ];
+  try {
+    const user = await User.findOne({ email }).populate("recycledWaste");
+    
+    user.recycledWaste.map((product) => {
+      let month = new Date(product.updatedAt);
+      month = month.getMonth();
+
+      arr[month].waste += 1;
+    });
+
+    console.log("recyce", arr);
+    return res.status(200).json({ RecycledWaste: arr });
+  } catch (err) {
+    console.log(err);
+    return res.status(404).json(err);
+  }
+};
+
 const updateCount = async (req, res) => {
   const { id, count, email } = req.body;
   console.log("count", req.body);
@@ -251,4 +322,5 @@ module.exports = {
   totalWaste,
   updateCount,
   recycledWasteFunc,
+  recycledWaste,
 };
