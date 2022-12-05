@@ -61,13 +61,13 @@ const WebcamCapture = ({ setOpenModal, setTypeProbability, category }) => {
       }
     });
 
-    if (parseInt(highestProb) > 85) {
-      setOpenModal((prev) => true);
-      setTypeProbability(typeProb);
-      console.log(typeProb);
-    } else {
-      alert("retry!!");
-    }
+    // if (parseInt(highestProb) > 85) {
+    setOpenModal((prev) => true);
+    setTypeProbability(typeProb);
+    console.log(typeProb);
+    // } else {
+    //   alert("retry!!");
+    // }
   };
 
   async function loop() {
