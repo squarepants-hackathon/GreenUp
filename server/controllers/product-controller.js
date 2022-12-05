@@ -233,7 +233,7 @@ const recycledWaste = async (req, res) => {
   ];
   try {
     const user = await User.findOne({ email }).populate("recycledWaste");
-    
+
     user.recycledWaste.map((product) => {
       let month = new Date(product.updatedAt);
       month = month.getMonth();
@@ -264,7 +264,7 @@ const updateCount = async (req, res) => {
 
     if (product.count < count) {
       let user = await User.findOne({ email });
-      user.totalWaste += count - product.count;
+      user.totalWaste = user.totalWaste + (count - product.count);
       user.save();
     }
 
@@ -301,7 +301,7 @@ const recycledWasteFunc = async (req, res) => {
     user.save();
 
     let product = await prod.findById(id);
-    product.count = count;
+    product.count = product.count - count;
     product.save();
 
     if (count <= 0) {

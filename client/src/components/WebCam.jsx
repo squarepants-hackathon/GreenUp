@@ -25,15 +25,15 @@ const WebcamCapture = ({ setOpenModal, setTypeProbability, category }) => {
   let webcam;
 
   const capture = async () => {
-    let URL = "https://teachablemachine.withgoogle.com/models/";
+    let URL = "https://teachablemachine.withgoogle.com/models/ongolnfw4/";
 
-    if (category === "e-waste") {
-      URL += "/mCsoP6AyQ";
-    } else if (category === "plastic-waste") {
-      URL += "mCsoP6AyQ/";
-    } else {
-      URL += "CS19oS292/";
-    }
+    // if (category === "e-waste") {
+    //   URL += "/mCsoP6AyQ";
+    // } else if (category === "plastic-waste") {
+    //   URL += "mCsoP6AyQ/";
+    // } else {
+    //   URL += "CS19oS292/";
+    // }
 
     const modelURL = URL + "model.json";
     const metadataURL = URL + "metadata.json";
@@ -48,7 +48,7 @@ const WebcamCapture = ({ setOpenModal, setTypeProbability, category }) => {
 
     webcam.update();
     const prediction = await model.predict(webcam.canvas);
-
+    console.table(prediction);
     let highestProb = 0;
     let typeProb = 0;
 
