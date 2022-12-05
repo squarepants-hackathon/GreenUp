@@ -183,10 +183,10 @@ const Dashboard = () => {
                 </div>
 
                 <div className="absolute top-[28rem] bottom-0 left-0 right-0 p-2 bg-opacity-40 w-full h-full grid xl:grid-cols-2 grid-cols-1 gap-5">
-                    <div className="flex flex-row items-center justify-center p-2 xl:mx-auto mx-0 bg-zinc-200 rounded-md mb-4 w-auto">
+                    <div className="flex flex-row items-center justify-center p-2 mx-0 bg-zinc-200 rounded-md mb-4 w-full">
                         <LineChart chartData={data} />
                     </div>
-                    <div className="flex flex-row items-center justify-center p-2 xl:mx-auto mx-0 bg-zinc-200 rounded-md mb-4 w-auto">
+                    <div className="flex flex-row items-center justify-center p-2 mx-0 bg-zinc-200 rounded-md mb-4 w-full">
                         <LineChart chartData={data2} />
                     </div>
                 </div>
