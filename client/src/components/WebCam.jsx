@@ -165,7 +165,7 @@ export default function WebCam() {
                   alt=" "
                 />
                 <div className="flex items-center justify-center font-semibold text-[0.8rem] sm:text-[1rem]">
-                  Scan image of the healthcare waste which is need to be
+                  Scan image of the waste which is need to be
                   disposed.
                 </div>
               </div>
@@ -176,7 +176,7 @@ export default function WebCam() {
                   alt=" "
                 />
                 <div className="flex items-center justify-center font-semibold text-[0.8rem] sm:text-[1rem]">
-                  Classify waste through our ML model in 5 categories specified
+                  Classify waste through our ML model in 7 categories specified
                   by WHO.
                 </div>
               </div>
